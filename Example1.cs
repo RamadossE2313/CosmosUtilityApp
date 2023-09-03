@@ -20,7 +20,9 @@ var items = await iterator.ReadNextAsync();
 // using parallel foreach to update the documents
 try
 {
-    Parallel.ForEach(items,
+    await Task.Run(() =>
+    {
+        Parallel.ForEach(items,
     new ParallelOptions
     {
         // we have restricted to run the parrelle thread to use/run 4 at a time, so that we will not complete all the computer power for this
@@ -33,6 +35,18 @@ try
 
         await container.PatchItemAsync<IItem>(item.id, new PartitionKey(item.pk), patchOperations);
 
+    });
+    });
+
+    // you can decide the thread count based on ProcessorCount
+    await Parallel.ForEachAsync(items,
+    new ParallelOptions { MaxDegreeOfParallelism = (Environment.ProcessorCount / 2) },
+    async (item, CancellationToken) =>
+    {
+        var patchOperations = new[] {
+        PatchOperation.Replace("/departments/0/subdepartments/0/divisions/0/name", "division-name-mddified-2")
+        };
+        await container.PatchItemAsync<IItem>(item.id, new PartitionKey(item.pk), patchOperations);
     });
 }
 catch (Exception ex)
