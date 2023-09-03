@@ -15,20 +15,93 @@ var container = cosmosClient.GetContainer(CosmosAccountInformation.Databasename,
 
 #region when we know the index position, to change the propery value , then we can use patch operation or if it's object type we can use it directly
 var iterator = container.GetItemQueryIterator<IItem>(queryDefinition);
+var items = await iterator.ReadNextAsync();
 
-foreach (var item in await iterator.ReadNextAsync())
+// using parallel foreach to update the documents
+try
 {
-    var patchOperations = new[] {
-        PatchOperation.Replace("/departments/0/subdepartments/0/divisions/0/name", "division-name-1-new")
+    Parallel.ForEach(items,
+    new ParallelOptions
+    {
+        // we have restricted to run the parrelle thread to use/run 4 at a time, so that we will not complete all the computer power for this
+        MaxDegreeOfParallelism = 4
+    }, async (item) =>
+    {
+        var patchOperations = new[] {
+        PatchOperation.Replace("/departments/0/subdepartments/0/divisions/0/name", "division-name-new")
     };
 
-    await container.PatchItemAsync<IItem>(item.id, new PartitionKey(item.pk), patchOperations);
+        await container.PatchItemAsync<IItem>(item.id, new PartitionKey(item.pk), patchOperations);
+
+    });
 }
+catch (Exception ex)
+{
+    throw;
+}
+
+
+//using for loop to update the documents
+//foreach (var item in items)
+//    {
+//        var patchOperations = new[] {
+//        PatchOperation.Replace("/departments/0/subdepartments/0/divisions/0/name", "division-name-1-new")
+//    };
+
+//        await container.PatchItemAsync<IItem>(item.id, new PartitionKey(item.pk), patchOperations);
+//    }
 #endregion
 
 #region when we don't know the index position, then we have to loop item and needs to update
 //var iterator = container.GetItemQueryIterator<EmployeeRootObject>(queryDefinition);
-//foreach (var item in await iterator.ReadNextAsync())
+//var items = await iterator.ReadNextAsync();
+
+// using parallel foreach to update the documents 
+//try
+//{
+//    Parallel.ForEach(items, new ParallelOptions { MaxDegreeOfParallelism = 4 }, async (item) =>
+//    {
+//        bool itemUpdated = false;
+
+//        foreach (var department in item.departments)
+//        {
+//            foreach (var subdepartment in department.subdepartments)
+//            {
+//                foreach (var division in subdepartment.divisions)
+//                {
+//                    if (!string.IsNullOrEmpty(division.name) && division.name != "division-name-new")
+//                    {
+//                        continue;
+//                    }
+//                    else
+//                    {
+//                        if (!itemUpdated)
+//                        {
+//                            itemUpdated = true;
+//                        }
+//                        division.name = CosmosAccountInformation.ReplaceValue;
+//                    }
+//                }
+//            }
+//        }
+//        if (itemUpdated)
+//        {
+//            var response = await container.ReplaceItemAsync(item, item.id, new PartitionKey(item.pk));
+//            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+//            {
+//                itemUpdated = false;
+//            }
+//        }
+//    });
+//}
+//catch (Exception ex)
+//{
+
+//    throw;
+//}
+
+// using for loop to update the documents
+//foreach (var item in items)
 //{
 //    bool itemUpdated = false;
 
@@ -38,13 +111,13 @@ foreach (var item in await iterator.ReadNextAsync())
 //        {
 //            foreach (var division in subdepartment.divisions)
 //            {
-//                if(!string.IsNullOrEmpty(division.name) && division.name != "division-name-2")
+//                if (!string.IsNullOrEmpty(division.name) && division.name != "division-name-2")
 //                {
 //                    continue;
 //                }
 //                else
 //                {
-//                    if(!itemUpdated)
+//                    if (!itemUpdated)
 //                    {
 //                        itemUpdated = true;
 //                    }
@@ -56,7 +129,7 @@ foreach (var item in await iterator.ReadNextAsync())
 //    if (itemUpdated)
 //    {
 //        var response = await container.ReplaceItemAsync(item, item.id, new PartitionKey(item.pk));
-//        if(response.StatusCode == System.Net.HttpStatusCode.OK)
+//        if (response.StatusCode == System.Net.HttpStatusCode.OK)
 //        {
 //            itemUpdated = false;
 //        }

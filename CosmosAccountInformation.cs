@@ -5,7 +5,7 @@
         public static string? Databasename { get; set; } = "employee-db";
         public static string? Containername { get; set; } = "employees";
         public static string? Propertyname { get; set; } = "/departments/subdepartments/divisions[0].name";
-        public static string ReplaceValue { get; set; } = "division-name-4";
+        public static string ReplaceValue { get; set; } = "division-name-mddified";
     }
 
     public class IItem
