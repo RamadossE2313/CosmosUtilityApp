@@ -40,9 +40,15 @@ Json File: <a href ="https://github.com/RamadossE2313/CosmosUtilityApp/blob/mast
 Queries: <a href="https://github.com/RamadossE2313/CosmosUtilityApp/blob/master/Queries/Example1Query.txt"> Cosmos queries</a>
 <ul>
  <li>
-   Update the document property using PatchItemAsync method <a href ="https://github.com/RamadossE2313/CosmosUtilityApp/blob/master/Example1.cs">PatchItemAsync example</a>
+   Update the document property using PatchItemAsync method and for each <a href ="https://github.com/RamadossE2313/CosmosUtilityApp/blob/master/Example1.cs">PatchItemAsync example</a>
  </li>
   <li>
-   Update the document property without using PatchItemAsync method ( we don't know the index position to update) <a href ="https://github.com/RamadossE2313/CosmosUtilityApp/blob/master/Example1.cs">Without using PatchItemAsync method</a>
+   Update the document property using PatchItemAsync method and Parallel ForEach <a href ="https://github.com/RamadossE2313/CosmosUtilityApp/blob/master/Example1.cs">PatchItemAsync example</a>
+ </li>
+  <li>
+   Update the document property without using PatchItemAsync method and for each( we don't know the index position to update) <a href ="https://github.com/RamadossE2313/CosmosUtilityApp/blob/master/Example1.cs">Without using PatchItemAsync method</a>
+ </li>
+  <li>
+   Update the document property without using PatchItemAsync method and Parallel ForEach ( we don't know the index position to update) <a href ="https://github.com/RamadossE2313/CosmosUtilityApp/blob/master/Example1.cs">Without using PatchItemAsync method</a>
  </li>
 </ul>
