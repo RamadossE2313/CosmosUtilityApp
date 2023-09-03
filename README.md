@@ -3,8 +3,6 @@
 <h5> Packages to Install For Cosmos:</h5>
  <ul>
    <li>Install Microsoft.Azure.Cosmos </li>
-   <li>Install Microsoft.Extensions.Configuration (to support configuration)</li>
-   <li>Install Microsoft.Extensions.Configuration.Json ( to support configuration to ad</li>
  </ul>
  <h5> Packages to Install to add app configuration file in the console application:</h5>
   <ul>
@@ -35,6 +33,7 @@
 
 <h4>Scenerios with examples</h4>
 Json File: <a href ="https://github.com/RamadossE2313/CosmosUtilityApp/blob/master/Examples/Example1.json">Json File</a>
+Queries: <a href="https://github.com/RamadossE2313/CosmosUtilityApp/blob/master/Queries/Example1Query.txt"> Cosmos queries</a>
 <ul>
  <li>
    Update the document property using PatchItemAsync method <a href ="https://github.com/RamadossE2313/CosmosUtilityApp/blob/master/Example1.cs">PatchItemAsync example</a>
