@@ -1,5 +1,9 @@
 <h3>Cosmos Utility Application</h3>
 
+<h5>Prerequiests</h5>
+<ul>
+ <li>You should have azure subscription or CosmosDB Emulator (<a href="https://learn.microsoft.com/en-us/azure/cosmos-db/local-emulator?tabs=ssl-netstd21">Download page</a>)</li>
+</ul>
 <h5> Packages to Install For Cosmos:</h5>
  <ul>
    <li>Install Microsoft.Azure.Cosmos </li>
