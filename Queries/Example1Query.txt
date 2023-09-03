@@ -24,3 +24,11 @@ join d in c.departments
 join s in d.subdepartments
 join sd in s.divisions
 where sd.name !="divison-2"
+
+Return Selected Result:
+select c
+from c 
+join d in c.departments
+join s in d.subdepartments
+join sd in s.divisions
+where sd.name ="division-name-4"
