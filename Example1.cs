@@ -2,15 +2,6 @@
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
 
-// ReadMe file content
-// install Microsoft.Azure.Cosmos package to access the cosmos
-// To add app settings jons file install below packages
-// install Microsoft.Extensions.Configuration
-// install Microsoft.Extensions.Configuration.Json  
-// add appsettings.json file and make copy to output directory as "Copy always"
-
-// This is an example of you want to update an property value in the array
-// we can't use patch in the array item when we don't know the index position
 
 IConfiguration Configuration = new ConfigurationBuilder()
    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
