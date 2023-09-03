@@ -1,0 +1,26 @@
+﻿Equal query:
+
+select c.id, c.pk, s.id as divisionid, sd.name as divisionname
+from c 
+join d in c.departments
+join s in d.subdepartments
+join sd in s.divisions
+where sd.name ="divison-2"
+
+NotEqual query:
+
+select c.id
+from c 
+join d in c.departments
+join s in d.subdepartments
+join sd in s.divisions
+where sd.name !="divison-2"
+
+distince query:
+
+select distinct c.id, c.pk
+from c 
+join d in c.departments
+join s in d.subdepartments
+join sd in s.divisions
+where sd.name !="divison-2"

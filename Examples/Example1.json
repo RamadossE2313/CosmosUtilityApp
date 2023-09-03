@@ -1,0 +1,47 @@
+{
+  "name": "emp-1",
+  "departments": [
+    {
+      "id": 1,
+      "name": "dept-1",
+      "subdepartments": [
+        {
+          "id": 1,
+          "name": "sub-dept-1",
+          "divisions": [
+            {
+              "id": 1,
+              "name": "division-name-1"
+            },
+            {
+              "id": 2,
+              "name": "division-name-2"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "sub-dept-1",
+          "divisions": [
+            {
+              "id": 1,
+              "name": "division-name-1"
+            },
+            {
+              "id": 2,
+              "name": "division-name-2"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "type": "employee",
+  "id": "34b07014-9075-4680-bcc0-7dbe9ceda651",
+  "pk": "2",
+  "_rid": "sKlfAIqGA6YCAAAAAAAAAA==",
+  "_self": "dbs/sKlfAA==/colls/sKlfAIqGA6Y=/docs/sKlfAIqGA6YCAAAAAAAAAA==/",
+  "_etag": "\"00000000-0000-0000-de2d-528bc31601d9\"",
+  "_attachments": "attachments/",
+  "_ts": 1693721422
+}
